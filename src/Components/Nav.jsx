@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,83 +9,37 @@ const Nav = () => {
   };
 
   return (
-    <nav className="bg-white shadow-lg">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="flex justify-between">
-          <div className="flex space-x-4">
-            <div>
-              <a href="/" className="flex items-center py-5 px-2 text-gray-700">
-                <svg
-                  className="h-8 w-8 mr-2 text-blue-500"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-
-                >
-                  <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                  <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
-                </svg>
-                <span className="font-bold text-xl">MyOkirika Business Website</span>
-              </a>
-            </div>
-
-            <div className="hidden md:flex items-center space-x-1">
-              <a href="/" className="py-5 px-3 text-gray-700 hover:text-gray-900">
-                Home
-              </a>
-              <a href="/" className="py-5 px-3 text-gray-700 hover:text-gray-900">
-                About
-              </a>
-              <a href="/" className="py-5 px-3 text-gray-700 hover:text-gray-900">
-                Services
-              </a>
-              <a href="/" className="py-5 px-3 text-gray-700 hover:text-gray-900">
-                Contact
-              </a>
-            </div>
-          </div>
-
-          <div className="md:hidden flex items-center">
-            <button onClick={toggleMenu} className="mobile-menu-button">
-              <svg
-                className="w-6 h-6"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h16m-7 6h7"
-                />
-              </svg>
-            </button>
-          </div>
+    <nav className="relative text-white bg-black shadow-lg h-24">
+      <video
+        autoPlay
+        muted
+        loop
+        className="absolute inset-0 object-cover w-full h-full opacity-50"
+      >
+        <source src="https://www.shutterstock.com/shutterstock/videos/1099143059/preview/stock-footage-fashion-model-posing-alone-outdoors-portrait-serious-young-man-looking-camera-at-summer-street.webm" type="video/mp4" />
+      </video>
+      <div className="relative z-10 flex items-center justify-between px-4 py-4 mx-auto max-w-7xl">
+        <Link to="/" className="text-xl font-bold">Favi Store</Link>
+        <div className="hidden space-x-4 md:flex">
+          <Link to="/" className="hover:text-gray-300">Home</Link>
+          <Link to="/about" className="hover:text-gray-300">About</Link>
+          <Link to="/products" className="hover:text-gray-300">Products</Link>
+          <Link to="/contact" className="hover:text-gray-300">Contact</Link>
         </div>
+        <button onClick={toggleMenu} className="md:hidden">
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+        </button>
       </div>
-
-
-      <div className={`${isOpen ? "block" : "hidden"} md:hidden`}>
-        <a href="/" className="block py-2 px-4 text-sm hover:bg-gray-200">
-          Home
-        </a>
-        <a href="/" className="block py-2 px-4 text-sm hover:bg-gray-200">
-          About
-        </a>
-        <a href="/" className="block py-2 px-4 text-sm hover:bg-gray-200">
-          Products
-        </a>
-        <a href="/" className="block py-2 px-4 text-sm hover:bg-gray-200">
-          Contact
-        </a>
- 
-        
-      </div>
+      {isOpen && (
+        <div className="flex flex-col items-center py-4 space-y-2 bg-gray-800 md:hidden">
+          <Link to="/" className="text-gray-300">Home</Link>
+          <Link to="/about" className="text-gray-300">About</Link>
+          <Link to="/products" className="text-gray-300">Products</Link>
+          <Link to="/contact" className="text-gray-300">Contact</Link>
+        </div>
+      )}
     </nav>
   );
 };
