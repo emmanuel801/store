@@ -35,10 +35,20 @@ function App() {
     setCart(cart.filter((item) => item.id !== itemToRemove.id));
   };
 
+  const updateQuantity = (item, change) => {
+    setCart((prevCart) =>
+      prevCart.map((cartItem) =>
+        cartItem.id === item.id
+          ? { ...cartItem, quantity: Math.max(1, cartItem.quantity + change) }
+          : cartItem
+      )
+    );
+  };
+
   return (
     <Router>
       <div className="flex flex-col min-h-screen bg-gray-100">
-        <Nav />
+        <Nav cart={cart} setIsSidebarOpen={setIsSidebarOpen} />
         <div className="container flex-grow p-4 mx-auto">
           <Routes>
             <Route path="/" element={<Main />} />
@@ -52,6 +62,7 @@ function App() {
           <Sidebar
             cart={cart}
             removeFromCart={removeFromCart}
+            updateQuantity={updateQuantity}
             isOpen={isSidebarOpen}
             setIsOpen={setIsSidebarOpen}
           />

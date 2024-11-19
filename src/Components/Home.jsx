@@ -40,7 +40,7 @@ const Home = ({ addToCart, setDetails }) => {
       </div>
 
       {loading ? (
-        <p className="text-center text-white">Loading products...</p>
+        <p className="text-center text-neutral-600">Loading products...</p>
       ) : (
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {filteredDetails.length > 0 ? (

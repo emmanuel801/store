@@ -1,26 +1,19 @@
-import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const Sidebar = ({ cart, removeFromCart, isOpen, setIsOpen }) => {
-  const [showDescriptions, setShowDescriptions] = useState(false);
-
+const Sidebar = ({ cart, removeFromCart, updateQuantity, isOpen, setIsOpen }) => {
+  const navigate = useNavigate();
   const totalAmount = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   return (
     <div
-      className={`fixed right-0 top-0 h-screen w-64 p-4 bg-white shadow-lg transform transition-transform duration-300 ease-in-out ${
-        isOpen ? "translate-x-0" : "translate-x-full"
-      }`}
+      className={`fixed top-0 right-0 h-screen w-full p-4 bg-white shadow-lg transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
     >
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-bold">Cart Items</h2>
-        <button
-          className="text-gray-500 hover:text-gray-700"
-          onClick={() => setIsOpen(false)}
-        >
+        <button className="text-gray-500 hover:text-gray-700" onClick={() => setIsOpen(false)}>
           Close
         </button>
       </div>
-
       {cart.length === 0 ? (
         <p>Your cart is empty</p>
       ) : (
@@ -28,7 +21,6 @@ const Sidebar = ({ cart, removeFromCart, isOpen, setIsOpen }) => {
           {cart.map((item, index) => (
             <div key={index} className="p-4 bg-gray-200 rounded-md">
               <h3 className="text-lg font-semibold">{item.title}</h3>
-              {showDescriptions && <p>{item.description}</p>}
               <p>Price: ${item.price}</p>
               <p>Total: ${(item.price * item.quantity).toFixed(2)}</p>
               <div className="flex items-center mt-2">
@@ -58,12 +50,11 @@ const Sidebar = ({ cart, removeFromCart, isOpen, setIsOpen }) => {
           <p className="font-bold mt-4">Total Amount: ${totalAmount.toFixed(2)}</p>
         </div>
       )}
-
       <button
         className="mt-6 w-full px-3 py-2 text-sm bg-gray-700 text-white rounded hover:bg-gray-800 transition"
-        onClick={() => setShowDescriptions(!showDescriptions)}
+        onClick={() => navigate("/")}
       >
-        View All Products
+        Back to Home
       </button>
     </div>
   );
