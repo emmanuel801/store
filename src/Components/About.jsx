@@ -4,7 +4,7 @@ const About = () => {
   return (
     <div className="p-6 bg-gray-100 text-gray-800">
       <section className="text-center py-10 bg-gray-800 text-white">
-        <h1 className="text-4xl font-bold mb-4">About MyOkirika Business</h1>
+        <h1 className="text-4xl font-bold mb-4">About Favi Store</h1>
         <p className="max-w-2xl mx-auto text-gray-300">
           Discover the story behind our brand, our values, and our commitment to delivering high-quality, sustainable products.
         </p>

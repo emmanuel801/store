@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
+// import Home from './Components/Home';
 
 const Main = ({ addToCart, setDetails }) => {
   const [featuredProducts, setFeaturedProducts] = useState([]);
@@ -18,7 +19,7 @@ const Main = ({ addToCart, setDetails }) => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <section className="relative h-[70vh] bg-cover bg-center mt-10" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1698707890152-8d33419d526e?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')" }}>
+      <section className="relative h-[70vh] bg-cover bg-center" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1698707890152-8d33419d526e?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')" }}>
         <div className="absolute inset-0 bg-black opacity-40"></div>
         <div className="relative flex flex-col items-center justify-center h-full text-center text-white">
           <h1 className="text-5xl font-bold">Welcome to Favi Store!</h1>
@@ -45,6 +46,9 @@ const Main = ({ addToCart, setDetails }) => {
                 <img src={item.image} alt={item.title} className="object-cover w-full h-40 mt-2 rounded-lg" />
                 <p className="mt-2 text-gray-600">Price: ${item.price}</p>
                 <Link to={`/product/${item.id}`} className="text-blue-500">View Details</Link>
+                <button onClick={() => addToCart(item)} className="block w-full py-2 mt-2 text-white bg-blue-500 rounded hover:bg-blue-600">
+                  Add to Cart <FaShoppingCart className="inline ml-2" />
+                </button>
               </div>
             ))
           ) : (

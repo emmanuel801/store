@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
 
 const Nav = ({ cartCount, setIsSidebarOpen }) => {
@@ -10,7 +10,7 @@ const Nav = ({ cartCount, setIsSidebarOpen }) => {
   };
 
   return (
-    <nav className="relative text-white bg-black shadow-lg h-24">
+    <nav className="relative text-white bg-black shadow-lg h-24 z-50">
       <video
         autoPlay
         muted
@@ -24,13 +24,54 @@ const Nav = ({ cartCount, setIsSidebarOpen }) => {
       </video>
 
       <div className="relative z-10 flex items-center justify-between px-4 py-4 mx-auto max-w-7xl mt-6">
-        <Link to="/" className="text-5xl font-bold transition duration-300 ease-in-out hover:text-gray-300">Favi Store</Link>
+        <NavLink
+          to="/"
+          className="text-5xl font-bold transition duration-300 ease-in-out hover:text-gray-300"
+        >
+          Favi Store
+        </NavLink>
 
         <div className="hidden space-x-4 md:flex">
-          <Link to="/" className="transition duration-300 ease-in-out hover:text-gray-300">Home</Link>
-          <Link to="/products" className="transition duration-300 ease-in-out hover:text-gray-300">Products</Link>
-          <Link to="/about" className="transition duration-300 ease-in-out hover:text-gray-300">About</Link>
-          <Link to="/contact" className="transition duration-300 ease-in-out hover:text-gray-300">Contact</Link>
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              `transition duration-300 ease-in-out ${
+                isActive ? "text-gray-300 border-b-2 border-white" : "hover:text-gray-300"
+              }`
+            }
+          >
+            Home
+          </NavLink>
+          <NavLink
+            to="/products"
+            className={({ isActive }) =>
+              `transition duration-300 ease-in-out ${
+                isActive ? "text-gray-300 border-b-2 border-white" : "hover:text-gray-300"
+              }`
+            }
+          >
+            Products
+          </NavLink>
+          <NavLink
+            to="/about"
+            className={({ isActive }) =>
+              `transition duration-300 ease-in-out ${
+                isActive ? "text-gray-300 border-b-2 border-white" : "hover:text-gray-300"
+              }`
+            }
+          >
+            About
+          </NavLink>
+          <NavLink
+            to="/contact"
+            className={({ isActive }) =>
+              `transition duration-300 ease-in-out ${
+                isActive ? "text-gray-300 border-b-2 border-white" : "hover:text-gray-300"
+              }`
+            }
+          >
+            Contact
+          </NavLink>
         </div>
 
         <div className="flex items-center space-x-4">
@@ -53,7 +94,12 @@ const Nav = ({ cartCount, setIsSidebarOpen }) => {
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h16m-7 6h7"
+              />
             </svg>
           </button>
         </div>
@@ -61,10 +107,46 @@ const Nav = ({ cartCount, setIsSidebarOpen }) => {
 
       {isOpen && (
         <div className="flex flex-col items-center py-4 space-y-2 bg-gray-800 md:hidden animate-slideIn">
-          <Link to="/" className="text-gray-300 transition duration-300 ease-in-out hover:text-white">Home</Link>
-          <Link to="/products" className="text-gray-300 transition duration-300 ease-in-out hover:text-white">Products</Link>
-          <Link to="/about" className="text-gray-300 transition duration-300 ease-in-out hover:text-white">About</Link>
-          <Link to="/contact" className="text-gray-300 transition duration-300 ease-in-out hover:text-white">Contact</Link>
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              `text-gray-300 transition duration-300 ease-in-out ${
+                isActive ? "text-white font-bold" : "hover:text-white"
+              }`
+            }
+          >
+            Home
+          </NavLink>
+          <NavLink
+            to="/products"
+            className={({ isActive }) =>
+              `text-gray-300 transition duration-300 ease-in-out ${
+                isActive ? "text-white font-bold" : "hover:text-white"
+              }`
+            }
+          >
+            Products
+          </NavLink>
+          <NavLink
+            to="/about"
+            className={({ isActive }) =>
+              `text-gray-300 transition duration-300 ease-in-out ${
+                isActive ? "text-white font-bold" : "hover:text-white"
+              }`
+            }
+          >
+            About
+          </NavLink>
+          <NavLink
+            to="/contact"
+            className={({ isActive }) =>
+              `text-gray-300 transition duration-300 ease-in-out ${
+                isActive ? "text-white font-bold" : "hover:text-white"
+              }`
+            }
+          >
+            Contact
+          </NavLink>
         </div>
       )}
     </nav>

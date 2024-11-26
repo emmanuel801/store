@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
-import './App.css';
-import Home from './Components/Home';
-import Footer from './Components/Footer';
-import Sidebar from './Components/Sidebar';
-import Nav from './Components/Nav';
+import React, { useState } from "react";
+import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import About from './Components/About';
-import Contact from './Components/Contact';
-import Main from './Components/Main';
-import ProductDetails from './Components/ProductDetails';
+
+import Home from "./Components/Home";
+import Footer from "./Components/Footer";
+import Sidebar from "./Components/Sidebar";
+import Nav from "./Components/Nav";
+import About from "./Components/About";
+import Contact from "./Components/Contact";
+import Main from "./Components/Main";
+import ProductDetails from "./Components/ProductDetails";
+import TermsAndConditions from "./Components/TermsAndConditions";
+import PrivacyPolicy from "./Components/PrivacyPolicy";
+import HelpAndFAQs from "./Components/HelpAndFAQs";
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -28,18 +32,17 @@ function App() {
         return [...prevCart, { ...item, quantity: 1 }];
       }
     });
-    setIsSidebarOpen(true);
   };
 
   const removeFromCart = (itemToRemove) => {
     setCart(cart.filter((item) => item.id !== itemToRemove.id));
   };
 
-  const updateQuantity = (item, change) => {
+  const updateQuantity = (item, amount) => {
     setCart((prevCart) =>
       prevCart.map((cartItem) =>
         cartItem.id === item.id
-          ? { ...cartItem, quantity: Math.max(1, cartItem.quantity + change) }
+          ? { ...cartItem, quantity: cartItem.quantity + amount }
           : cartItem
       )
     );
@@ -48,25 +51,35 @@ function App() {
   return (
     <Router>
       <div className="flex flex-col min-h-screen bg-gray-100">
-        <Nav cart={cart} setIsSidebarOpen={setIsSidebarOpen} />
+        <Nav
+          cartCount={cart.reduce((sum, item) => sum + item.quantity, 0)}
+          setIsSidebarOpen={setIsSidebarOpen}
+        />
         <div className="container flex-grow p-4 mx-auto">
           <Routes>
             <Route path="/" element={<Main />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/products" element={<Home addToCart={addToCart} setDetails={setDetails} />} />
-            <Route path="/product/:id" element={<ProductDetails details={details} />} />
+            <Route
+              path="/products"
+              element={<Home addToCart={addToCart} setDetails={setDetails} />}
+            />
+            <Route
+              path="/product/:id"
+              element={<ProductDetails details={details} />}
+            />
+            <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/help-and-faqs" element={<HelpAndFAQs />} />
           </Routes>
         </div>
-        {isSidebarOpen && (
-          <Sidebar
-            cart={cart}
-            removeFromCart={removeFromCart}
-            updateQuantity={updateQuantity}
-            isOpen={isSidebarOpen}
-            setIsOpen={setIsSidebarOpen}
-          />
-        )}
+        <Sidebar
+          cart={cart}
+          removeFromCart={removeFromCart}
+          updateQuantity={updateQuantity}
+          isOpen={isSidebarOpen}
+          setIsOpen={setIsSidebarOpen}
+        />
         <Footer />
       </div>
     </Router>

@@ -15,7 +15,7 @@ const Home = ({ addToCart, setDetails }) => {
       setDetails(data);
 
       setTimeout(() => {
-        setLoading(false); 
+        setLoading(false);
       }, 2000);
     };
 
